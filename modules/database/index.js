@@ -34,7 +34,7 @@ function Search(config, callback) {
 		if (this._ready) { return callback(null, true); }
 		async.waterfall([
 			function (next) {
-				if (global._TEST_)
+				if (global._RESETDB_ === true)
 					return that.dropIndex(function () { return next(null); });
 				return next();
 			},
@@ -179,8 +179,11 @@ function Search(config, callback) {
 					}
 					for (var i in fields) {
 						for (var j in query.q) {
-							var should = { match: {} };
-							should.match[fields[i]] = query.q[j];
+							var query_type = "fuzzy_like_this";
+							var field = "like_text" || fields[i];
+							var should = {};
+							should[query_type] = {};
+							should[query_type][field] = query.q[j];
 							_query.query.bool.should.push(should);
 						}
 					}

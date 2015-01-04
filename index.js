@@ -1,4 +1,5 @@
 var async = require('async');
+global._RESETDB_ = false;
 global._TEST_ = (global._TEST_ || process.env.TEST ? true : false)
 global._PRODUCTION_ = (process.env.NODE_ENV === "production" ? true : false);
 global.io = new (require('./modules/io-core'))({

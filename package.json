@@ -4,7 +4,7 @@
   "description": "HunterXuibaAPI",
   "main": "index.js",
   "scripts": {
-    "test": "PORT=12345 mocha -u tdd -t 5000"
+    "test": "PORT=12345 mocha -u tdd -t 5000 test/index.js"
   },
   "author": "Xuiba team",
   "license": "private",

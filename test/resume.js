@@ -118,7 +118,7 @@ suite('Resumes', function () {
 			should.exist(data.body.dateCreation);
 			addResume(data.body);
 			should.not.exist(data.body.secret);
-			done();		
+			done();
 		});
 	});
 	waitForIndex();

@@ -30,6 +30,17 @@ exports.settings = {
                 "type":     "edge_ngram",
                 "min_gram": 1,
                 "max_gram": 20
+            },
+            "nGram_filter": {
+               "type": "nGram",
+               "min_gram": 2,
+               "max_gram": 20,
+               "token_chars": [
+                  "letter",
+                  "digit",
+                  "punctuation",
+                  "symbol"
+               ]
             }
         },
         "analyzer": {
@@ -40,6 +51,23 @@ exports.settings = {
                     "lowercase",
                     "autocomplete_filter" 
                 ]
+            },
+            "nGram_analyzer": {
+               "type": "custom",
+               "tokenizer": "whitespace",
+               "filter": [
+                  "lowercase",
+                  "asciifolding",
+                  "nGram_filter"
+               ]
+            },
+            "whitespace_analyzer": {
+               "type": "custom",
+               "tokenizer": "whitespace",
+               "filter": [
+                  "lowercase",
+                  "asciifolding"
+               ]
             }
         }
     }
@@ -48,6 +76,10 @@ exports.settings = {
 exports.types = {
 	'Offers': {
 		mapping: {
+            "_all": {
+                "index_analyzer": "nGram_analyzer",
+                "search_analyzer": "whitespace_analyzer"
+             },
 			"properties": {
 				"name": { type: "string", "analyzer": "simple" }
     		}
@@ -55,6 +87,10 @@ exports.types = {
 	},
 	"Resumes": {
 		mapping: {
+            "_all": {
+                "index_analyzer": "nGram_analyzer",
+                "search_analyzer": "whitespace_analyzer"
+             },
 			"properties": {
 				"name": { type: "string", "analyzer": "simple" }
     		}
