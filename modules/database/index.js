@@ -7,6 +7,7 @@ function Search(config, callback) {
 	this._ready = false;
 	this.index = config.server.index;
 	this.settings = config.settings || {};
+	this.excluded = config.excluded || [];
 
 	_info('Connecting to ElasticSearch ['  + config.server.host + ']');
 	this.client = new elasticsearch.Client({ host: config.server.host });
@@ -186,7 +187,7 @@ function Search(config, callback) {
 					break;
 				default:
 					var term;
-					if (_config.search.excluded.indexOf(key) !== -1)
+					if (this.excluded.indexOf(key) !== -1)
 						break;
 					if (typeof query.originalKey === 'string' && query[originalKey].indexOf(',') !== -1) {
 						term = {"terms": {}};
