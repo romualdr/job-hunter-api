@@ -1,0 +1,11 @@
+
+Search - GET /offer
+
+
+Creation - POST /resume
+Update - PUT /resume
+Delete - DELETE /resume/:id
+Visualize - GET /resume/:id
+
+
+Search - GET /resume
