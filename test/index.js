@@ -1,5 +1,5 @@
 global._TEST_ = true;
-global._RESETDB_ = false;
+global._RESETDB_ = true;
 // Load the server
 var server = require('../index.js');
 global.request = require('supertest')('http://localhost:' + process.env.PORT || 1338);

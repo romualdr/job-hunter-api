@@ -113,7 +113,7 @@ function Search(config, callback) {
 					body: doc
 				}, function (err, data) {
 					if (err)
-						return callback(_errors.internalError(type +' [ ' + doc.id + '] failed to index.', 'index-failed'));
+						return callback(type +' [ ' + doc.id + '] failed to index.');
 					_info('Indexed [' + type + '] [' + doc.id + ']');
 					return callback(null, doc);
 				});
@@ -246,7 +246,7 @@ function Search(config, callback) {
 			},
 		], function (err, res) {
 			if (err)
-				return callback(_errors.internalError('Mapping insertion failed for type [' + type + '].', 'mapping-failed'));
+				return callback('Mapping insertion failed for type [' + type + '].');
 			_type._inited = true;
 			callback(null, { ok: true });
 		});
